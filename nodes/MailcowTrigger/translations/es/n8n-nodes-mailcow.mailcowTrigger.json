@@ -1,0 +1,26 @@
+{
+  "header": {
+    "displayName": "Mailcow Trigger",
+    "description": "Inicia un workflow cuando mailcow tiene un buzón, alias, dominio o mensaje en cuarentena nuevo"
+  },
+  "nodeView": {
+    "event": {
+      "displayName": "Evento",
+      "options": {
+        "newAlias": {
+          "displayName": "Alias Nuevo"
+        },
+        "newDomain": {
+          "displayName": "Dominio Nuevo"
+        },
+        "newMailbox": {
+          "displayName": "Buzón Nuevo"
+        },
+        "newQuarantineItem": {
+          "displayName": "Mensaje Nuevo En Cuarentena",
+          "description": "Rspamd retuvo un mensaje en cuarentena"
+        }
+      }
+    }
+  }
+}

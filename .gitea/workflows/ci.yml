@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Not actions/checkout: inside the runner's DinD the `gitea:3000` host does
+      # not resolve. Clone over the public URL with a read:repository PAT.
+      - name: Clone
+        run: |
+          git clone --depth 1 -b "${GITHUB_REF_NAME}" \
+            "https://${{ secrets.GIT_CLONE_TOKEN }}@git.sockets.ar/hernan/n8n-nodes-mailcow.git" .
+
+      # --ignore-scripts: a plain `npm ci` fails building `isolated-vm` (native
+      # addon, transitive dependency of n8n-workflow) with the runner's node. Only
+      # the n8n-workflow types are needed for tsc and lint.
+      - name: Install
+        run: npm ci --ignore-scripts
+
+      - name: Lint
+        run: npm run lint
+
+      # vitest is plain JS (no native addons), so it runs fine with --ignore-scripts.
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build

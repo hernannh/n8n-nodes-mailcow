@@ -1,0 +1,378 @@
+{
+  "header": {
+    "displayName": "Mailcow",
+    "description": "Administra un servidor de correo mailcow: dominios, buzones, alias, cuarentena y más"
+  },
+  "nodeView": {
+    "resource": {
+      "displayName": "Recurso",
+      "options": {
+        "alias": {
+          "displayName": "Alias"
+        },
+        "appPassword": {
+          "displayName": "Contraseña De Aplicación"
+        },
+        "dkim": {
+          "displayName": "Clave DKIM"
+        },
+        "domain": {
+          "displayName": "Dominio"
+        },
+        "log": {
+          "displayName": "Log"
+        },
+        "queue": {
+          "displayName": "Cola De Correo"
+        },
+        "mailbox": {
+          "displayName": "Buzón"
+        },
+        "quarantine": {
+          "displayName": "Cuarentena"
+        },
+        "status": {
+          "displayName": "Estado"
+        }
+      }
+    },
+    "operation": {
+      "displayName": "Operación",
+      "options": {
+        "create": {
+          "displayName": "Crear"
+        },
+        "delete": {
+          "displayName": "Borrar"
+        },
+        "get": {
+          "displayName": "Obtener"
+        },
+        "getAll": {
+          "displayName": "Obtener Varios"
+        },
+        "update": {
+          "displayName": "Actualizar"
+        },
+        "learnHam": {
+          "displayName": "Marcar Como Legítimo Y Liberar",
+          "description": "Le enseña a Rspamd que el mensaje es legítimo y lo entrega"
+        },
+        "release": {
+          "displayName": "Liberar",
+          "description": "Entrega el mensaje a su destinatario"
+        },
+        "deleteAll": {
+          "displayName": "Borrar Todo",
+          "description": "Descarta todos los mensajes de la cola de Postfix. No se puede deshacer."
+        },
+        "flush": {
+          "displayName": "Reintentar Envío",
+          "description": "Reintenta ahora la entrega de todos los mensajes en cola"
+        },
+        "getContainers": {
+          "displayName": "Obtener Containers",
+          "description": "Estado y hora de arranque de cada container de mailcow"
+        },
+        "getVersion": {
+          "displayName": "Obtener Versión"
+        },
+        "getVmail": {
+          "displayName": "Obtener Uso De Disco Del Correo"
+        }
+      }
+    },
+    "domain": {
+      "displayName": "Dominio",
+      "placeholder": "ejemplo.com.ar"
+    },
+    "returnAll": {
+      "displayName": "Devolver Todo",
+      "description": "Si se devuelven todos los resultados o solo hasta el límite"
+    },
+    "limit": {
+      "displayName": "Límite",
+      "description": "Cantidad máxima de resultados a devolver"
+    },
+    "additionalFields": {
+      "displayName": "Campos Adicionales",
+      "placeholder": "Agregar Campo",
+      "options": {
+        "active": {
+          "displayName": "Activo"
+        },
+        "backupmx": {
+          "displayName": "MX De Respaldo",
+          "description": "Si este servidor solo retransmite el dominio como MX secundario"
+        },
+        "defquota": {
+          "displayName": "Cuota Por Defecto Del Buzón (MB)",
+          "description": "Cuota que reciben los buzones nuevos si no se indica otra"
+        },
+        "description": {
+          "displayName": "Descripción"
+        },
+        "aliases": {
+          "displayName": "Máximo De Alias"
+        },
+        "maxquota": {
+          "displayName": "Cuota Máxima Por Buzón (MB)",
+          "description": "La mayor cuota que puede tener un buzón del dominio"
+        },
+        "mailboxes": {
+          "displayName": "Máximo De Buzones"
+        },
+        "rl_frame": {
+          "displayName": "Período Del Límite De Envío",
+          "options": {
+            "s": {
+              "displayName": "Por Segundo"
+            },
+            "m": {
+              "displayName": "Por Minuto"
+            },
+            "h": {
+              "displayName": "Por Hora"
+            },
+            "d": {
+              "displayName": "Por Día"
+            }
+          }
+        },
+        "rl_value": {
+          "displayName": "Mensajes Por Período",
+          "description": "Cuántos mensajes se pueden enviar por período. 0 es sin límite. En buzones se aplica con una segunda llamada, porque mailcow lo ignora al crear."
+        },
+        "relay_all_recipients": {
+          "displayName": "Retransmitir Todos Los Destinatarios"
+        },
+        "tags": {
+          "displayName": "Etiquetas",
+          "description": "Lista de etiquetas separadas por comas"
+        },
+        "quota": {
+          "displayName": "Cuota Total (MB)",
+          "description": "Espacio compartido por todos los buzones del dominio"
+        },
+        "force_pw_update": {
+          "displayName": "Forzar Cambio De Contraseña",
+          "description": "Si el usuario tiene que cambiar la contraseña en el próximo inicio de sesión"
+        },
+        "tls_enforce_in": {
+          "displayName": "Exigir TLS Entrante"
+        },
+        "tls_enforce_out": {
+          "displayName": "Exigir TLS Saliente"
+        },
+        "private_comment": {
+          "displayName": "Comentario Privado"
+        },
+        "public_comment": {
+          "displayName": "Comentario Público"
+        },
+        "sogo_visible": {
+          "displayName": "Visible En SOGo",
+          "description": "Si los usuarios pueden elegir el alias como remitente en SOGo"
+        }
+      }
+    },
+    "updateFields": {
+      "displayName": "Campos A Actualizar",
+      "placeholder": "Agregar Campo",
+      "options": {
+        "active": {
+          "displayName": "Activo"
+        },
+        "backupmx": {
+          "displayName": "MX De Respaldo"
+        },
+        "defquota": {
+          "displayName": "Cuota Por Defecto Del Buzón (MB)"
+        },
+        "description": {
+          "displayName": "Descripción"
+        },
+        "aliases": {
+          "displayName": "Máximo De Alias"
+        },
+        "maxquota": {
+          "displayName": "Cuota Máxima Por Buzón (MB)"
+        },
+        "mailboxes": {
+          "displayName": "Máximo De Buzones"
+        },
+        "rl_frame": {
+          "displayName": "Período Del Límite De Envío",
+          "options": {
+            "s": {
+              "displayName": "Por Segundo"
+            },
+            "m": {
+              "displayName": "Por Minuto"
+            },
+            "h": {
+              "displayName": "Por Hora"
+            },
+            "d": {
+              "displayName": "Por Día"
+            }
+          }
+        },
+        "rl_value": {
+          "displayName": "Mensajes Por Período",
+          "description": "Cuántos mensajes se pueden enviar por período. 0 es sin límite. En buzones se aplica con una segunda llamada, porque mailcow lo ignora al crear."
+        },
+        "relay_all_recipients": {
+          "displayName": "Retransmitir Todos Los Destinatarios"
+        },
+        "tags": {
+          "displayName": "Etiquetas",
+          "description": "Lista de etiquetas separadas por comas"
+        },
+        "quota": {
+          "displayName": "Cuota (MB)"
+        },
+        "force_pw_update": {
+          "displayName": "Forzar Cambio De Contraseña"
+        },
+        "name": {
+          "displayName": "Nombre Completo"
+        },
+        "password": {
+          "displayName": "Contraseña"
+        },
+        "sender_acl": {
+          "displayName": "Direcciones Para Enviar Como",
+          "description": "Direcciones o dominios, separados por comas, con los que este buzón puede enviar. Reemplaza la lista actual."
+        },
+        "sogo_access": {
+          "displayName": "Acceso A SOGo",
+          "description": "Si el usuario puede entrar al webmail SOGo"
+        },
+        "private_comment": {
+          "displayName": "Comentario Privado"
+        },
+        "public_comment": {
+          "displayName": "Comentario Público"
+        },
+        "sogo_visible": {
+          "displayName": "Visible En SOGo"
+        },
+        "address": {
+          "displayName": "Dirección"
+        },
+        "goto": {
+          "displayName": "Destinos",
+          "description": "Direcciones separadas por comas"
+        }
+      }
+    },
+    "email": {
+      "displayName": "Correo",
+      "description": "Dirección completa del buzón. El dominio tiene que existir en mailcow.",
+      "placeholder": "nombre@ejemplo.com.ar"
+    },
+    "name": {
+      "displayName": "Nombre Completo"
+    },
+    "password": {
+      "displayName": "Contraseña",
+      "description": "Dejala vacía para generar una al azar. Se devuelve una sola vez en la salida, en generated_password."
+    },
+    "quota": {
+      "displayName": "Cuota (MB)",
+      "description": "0 usa la cuota por defecto del dominio"
+    },
+    "filterDomain": {
+      "displayName": "Filtrar Por Dominio",
+      "description": "Devuelve solo los buzones de este dominio. Vacío devuelve todos.",
+      "placeholder": "ejemplo.com.ar"
+    },
+    "senderAclNotice": {
+      "displayName": "Direcciones Para Enviar Como reemplaza la lista entera. Incluí todas las direcciones con las que el buzón ya envía, o se pierden."
+    },
+    "aliasId": {
+      "displayName": "ID Del Alias",
+      "description": "ID numérico del alias, como lo devuelve Obtener Varios"
+    },
+    "address": {
+      "displayName": "Dirección",
+      "description": "Dirección del alias. Usá @ejemplo.com.ar para un catch-all.",
+      "placeholder": "info@ejemplo.com.ar"
+    },
+    "goto": {
+      "displayName": "Destinos",
+      "description": "Direcciones, separadas por comas, que reciben lo que llega al alias",
+      "placeholder": "ana@ejemplo.com.ar, juan@ejemplo.com.ar"
+    },
+    "gotoNotice": {
+      "displayName": "Cambiar los destinos también reinicia quién puede enviar como este alias: mailcow rearma esa lista y los buzones que podían enviar como el alias pierden el permiso. Revisalo después."
+    },
+    "mailbox": {
+      "displayName": "Buzón",
+      "placeholder": "nombre@ejemplo.com.ar"
+    },
+    "appId": {
+      "displayName": "ID De La Contraseña De Aplicación",
+      "description": "ID numérico, como lo devuelve Obtener Varios"
+    },
+    "appName": {
+      "displayName": "Nombre De La Aplicación",
+      "description": "Etiqueta que identifica dónde se usa la contraseña"
+    },
+    "protocols": {
+      "displayName": "Protocolos",
+      "description": "Para qué sirve la contraseña. Dale solo lo que la aplicación necesita."
+    },
+    "selector": {
+      "displayName": "Selector",
+      "description": "El registro DNS se publica como &lt;selector&gt;._domainkey.&lt;dominio&gt;"
+    },
+    "keySize": {
+      "displayName": "Tamaño De La Clave"
+    },
+    "quarantineId": {
+      "displayName": "ID En Cuarentena",
+      "description": "ID numérico del mensaje en cuarentena, como lo devuelve Obtener Varios"
+    },
+    "logType": {
+      "displayName": "Log",
+      "options": {
+        "acme": {
+          "displayName": "ACME (Certificados)"
+        },
+        "api": {
+          "displayName": "API"
+        },
+        "autodiscover": {
+          "displayName": "Autodiscover"
+        },
+        "dovecot": {
+          "displayName": "Dovecot (IMAP/POP3)"
+        },
+        "netfilter": {
+          "displayName": "Netfilter (Bloqueos)"
+        },
+        "postfix": {
+          "displayName": "Postfix (SMTP)"
+        },
+        "ratelimited": {
+          "displayName": "Límite De Envío Alcanzado"
+        },
+        "rspamd-history": {
+          "displayName": "Historial De Rspamd"
+        },
+        "sogo": {
+          "displayName": "SOGo"
+        },
+        "watchdog": {
+          "displayName": "Watchdog"
+        }
+      }
+    },
+    "count": {
+      "displayName": "Entradas",
+      "description": "Cuántas de las entradas más recientes devolver"
+    }
+  }
+}

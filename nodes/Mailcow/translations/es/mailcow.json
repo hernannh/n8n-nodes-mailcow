@@ -373,6 +373,10 @@
     "count": {
       "displayName": "Entradas",
       "description": "Cuántas de las entradas más recientes devolver"
+    },
+    "includePrivateKey": {
+      "displayName": "Incluir Clave Privada",
+      "description": "Si se conserva la clave privada en la salida cuando la API key puede leerla. Viene apagado para que no quede guardada en los datos de la ejecución."
     }
   }
 }

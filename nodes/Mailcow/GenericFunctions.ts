@@ -110,14 +110,50 @@ export async function mailcowApiRequest(
 		url: `${baseUrl}/api/v1/${endpoint.replace(/^\/+/, '')}`,
 		json: true,
 		skipSslCertificateValidation: credentials.allowUnauthorizedCerts as boolean,
+		// Read the status ourselves: n8n's own error for a 403 is a generic "Forbidden" and
+		// drops mailcow's message, which is the part that says what is wrong.
+		ignoreHttpStatusErrors: true,
+		returnFullResponse: true,
 	};
 	if (body !== undefined) options.body = body;
 
-	const response = await this.helpers.httpRequestWithAuthentication.call(
+	const response = (await this.helpers.httpRequestWithAuthentication.call(
 		this,
 		'mailcowApi',
 		options,
-	);
-	assertMailcowSuccess(response);
-	return response;
+	)) as { statusCode: number; body: unknown };
+	assertHttpSuccess(response.statusCode, response.body);
+	assertMailcowSuccess(response.body);
+	return response.body;
+}
+
+const HTTP_HINTS: Record<number, string> = {
+	401: 'Check the API key and that the IP n8n connects from is in "Allow API access from".',
+	403: 'The key is read-only, or this operation is not allowed for it.',
+};
+
+/** Raise a MailcowResponseError with mailcow's own message for any HTTP error status. */
+export function assertHttpSuccess(statusCode: number, body: unknown): void {
+	if (statusCode < 400) return;
+
+	let parsed = body;
+	if (typeof body === 'string') {
+		try {
+			parsed = JSON.parse(body);
+		} catch {
+			parsed = undefined;
+		}
+	}
+	const msg = (parsed as IDataObject | undefined)?.msg;
+	const reason = msg !== undefined ? formatMessage(msg) : 'no message in the response';
+	const hint = HTTP_HINTS[statusCode] ? ` ${HTTP_HINTS[statusCode]}` : '';
+	throw new MailcowResponseError(`mailcow answered HTTP ${statusCode}: ${reason}.${hint}`, body);
+}
+
+/**
+ * `get/dkim/<domain>` includes the private key when the API key may read it. Keeping it out of
+ * the node output by default stops it from ending up in the saved execution data.
+ */
+export function stripPrivateKey(records: IDataObject[]): IDataObject[] {
+	return records.map(({ privkey: _privkey, ...rest }) => rest);
 }

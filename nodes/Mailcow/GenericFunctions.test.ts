@@ -2,9 +2,11 @@ import { describe, expect, it } from 'vitest';
 
 import {
 	MailcowResponseError,
+	assertHttpSuccess,
 	assertMailcowSuccess,
 	formatMessage,
 	splitList,
+	stripPrivateKey,
 	toFlag,
 	toRecords,
 } from './GenericFunctions';
@@ -119,5 +121,37 @@ describe('generatePassword', () => {
 	});
 	it('does not repeat', () => {
 		expect(generatePassword(20)).not.toBe(generatePassword(20));
+	});
+});
+
+describe('assertHttpSuccess', () => {
+	it('passes 2xx and 3xx', () => {
+		expect(() => assertHttpSuccess(200, [])).not.toThrow();
+	});
+
+	it('keeps mailcow\'s message on a 403 from a read-only key', () => {
+		const run = () => assertHttpSuccess(403, { type: 'error', msg: 'API read/write access denied' });
+		expect(run).toThrow(MailcowResponseError);
+		expect(run).toThrow('mailcow answered HTTP 403: API read/write access denied. The key is read-only');
+	});
+
+	it('parses a JSON string body and hints at the allowed IPs on 401', () => {
+		expect(() => assertHttpSuccess(401, '{"type":"error","msg":"authentication failed"}')).toThrow(
+			/HTTP 401: authentication failed\. .*Allow API access from/,
+		);
+	});
+
+	it('copes with a body that is not JSON', () => {
+		expect(() => assertHttpSuccess(502, '<html>Bad Gateway</html>')).toThrow(
+			'mailcow answered HTTP 502: no message in the response.',
+		);
+	});
+});
+
+describe('stripPrivateKey', () => {
+	it('drops privkey and keeps the public data', () => {
+		expect(stripPrivateKey([{ pubkey: 'p', dkim_txt: 'v=DKIM1', privkey: 'SECRET' }])).toEqual([
+			{ pubkey: 'p', dkim_txt: 'v=DKIM1' },
+		]);
 	});
 });

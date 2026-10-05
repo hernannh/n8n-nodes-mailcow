@@ -395,6 +395,15 @@ export const dkimProperties: INodeProperties[] = [
 		...show('dkim'),
 	},
 	{
+		displayName: 'Include Private Key',
+		name: 'includePrivateKey',
+		type: 'boolean',
+		default: false,
+		description:
+			'Whether to keep the private key in the output when the API key can read it. Off by default so it is not stored in the execution data.',
+		...show('dkim', ['create', 'get']),
+	},
+	{
 		displayName: 'Selector',
 		name: 'selector',
 		type: 'string',

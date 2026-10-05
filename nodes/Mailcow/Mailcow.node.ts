@@ -25,6 +25,7 @@ import {
 	MailcowResponseError,
 	mailcowApiRequest,
 	splitList,
+	stripPrivateKey,
 	toFlag,
 	toRecords,
 } from './GenericFunctions';
@@ -135,6 +136,10 @@ export class Mailcow implements INodeType {
 async function limitResults(this: IExecuteFunctions, records: IDataObject[], i: number) {
 	if (this.getNodeParameter('returnAll', i, false) as boolean) return records;
 	return records.slice(0, this.getNodeParameter('limit', i, 50) as number);
+}
+
+function dkimOutput(this: IExecuteFunctions, records: IDataObject[], i: number) {
+	return this.getNodeParameter('includePrivateKey', i, false) ? records : stripPrivateKey(records);
 }
 
 /** mailcow answers writes with `[{ type, log, msg }]`; that list is the useful output. */
@@ -279,14 +284,14 @@ async function runOperation(
 
 		/* dkim */
 		case 'dkim:get':
-			return toRecords(await mailcowApiRequest.call(this, 'GET', `get/dkim/${enc(param('domain'))}`));
+			return dkimOutput.call(this, toRecords(await mailcowApiRequest.call(this, 'GET', `get/dkim/${enc(param('domain'))}`)), i);
 		case 'dkim:create':
 			await mailcowApiRequest.call(this, 'POST', 'add/dkim', {
 				domains: param('domain'),
 				dkim_selector: param('selector'),
 				key_size: String(this.getNodeParameter('keySize', i)),
 			});
-			return toRecords(await mailcowApiRequest.call(this, 'GET', `get/dkim/${enc(param('domain'))}`));
+			return dkimOutput.call(this, toRecords(await mailcowApiRequest.call(this, 'GET', `get/dkim/${enc(param('domain'))}`)), i);
 		case 'dkim:delete':
 			return writeResult(await mailcowApiRequest.call(this, 'POST', 'delete/dkim', [param('domain')]));
 

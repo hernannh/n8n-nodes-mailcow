@@ -1,0 +1,558 @@
+{
+ "id": "mailcowTestRo001",
+ "active": false,
+ "name": "TEST mailcow node (read-only)",
+ "nodes": [
+  {
+   "parameters": {},
+   "id": "start",
+   "name": "Start",
+   "type": "n8n-nodes-base.manualTrigger",
+   "typeVersion": 1,
+   "position": [
+    0,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "resource": "status",
+    "operation": "getVersion"
+   },
+   "id": "n0",
+   "name": "Version",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    220,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RO_CRED_ID__",
+     "name": "Mailcow account"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "status",
+    "operation": "getContainers"
+   },
+   "id": "n1",
+   "name": "Containers",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    440,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RO_CRED_ID__",
+     "name": "Mailcow account"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "status",
+    "operation": "getVmail"
+   },
+   "id": "n2",
+   "name": "Vmail",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    660,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RO_CRED_ID__",
+     "name": "Mailcow account"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "domain",
+    "operation": "getAll",
+    "returnAll": true
+   },
+   "id": "n3",
+   "name": "Domains",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    880,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RO_CRED_ID__",
+     "name": "Mailcow account"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "domain",
+    "operation": "get",
+    "domain": "__DOMAIN__"
+   },
+   "id": "n4",
+   "name": "Domain get",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    1100,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RO_CRED_ID__",
+     "name": "Mailcow account"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "mailbox",
+    "operation": "getAll",
+    "returnAll": true
+   },
+   "id": "n5",
+   "name": "Mailboxes",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    1320,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RO_CRED_ID__",
+     "name": "Mailcow account"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "mailbox",
+    "operation": "getAll",
+    "filterDomain": "__DOMAIN__",
+    "returnAll": true
+   },
+   "id": "n6",
+   "name": "Mailboxes by domain",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    1540,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RO_CRED_ID__",
+     "name": "Mailcow account"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "alias",
+    "operation": "getAll",
+    "returnAll": true
+   },
+   "id": "n7",
+   "name": "Aliases",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    1760,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RO_CRED_ID__",
+     "name": "Mailcow account"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "quarantine",
+    "operation": "getAll",
+    "returnAll": true
+   },
+   "id": "n8",
+   "name": "Quarantine",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    1980,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RO_CRED_ID__",
+     "name": "Mailcow account"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "queue",
+    "operation": "getAll",
+    "returnAll": true
+   },
+   "id": "n9",
+   "name": "Queue",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    2200,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RO_CRED_ID__",
+     "name": "Mailcow account"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "log",
+    "operation": "get",
+    "logType": "postfix",
+    "count": 5
+   },
+   "id": "n10",
+   "name": "Postfix log",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    2420,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RO_CRED_ID__",
+     "name": "Mailcow account"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "dkim",
+    "operation": "get",
+    "domain": "__DOMAIN__"
+   },
+   "id": "n11",
+   "name": "DKIM",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    2640,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RO_CRED_ID__",
+     "name": "Mailcow account"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "mailbox",
+    "operation": "get",
+    "email": "n8n-test-noexiste@__DOMAIN__"
+   },
+   "id": "n12",
+   "name": "Mailbox missing",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    2860,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RO_CRED_ID__",
+     "name": "Mailcow account"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "mailbox",
+    "operation": "update",
+    "email": "n8n-test-noexiste@__DOMAIN__",
+    "updateFields": {
+     "name": "x"
+    }
+   },
+   "id": "n13",
+   "name": "Write must fail",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    3080,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RO_CRED_ID__",
+     "name": "Mailcow account"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "jsCode": "// Summary without personal data: item count, error and field names per node.\nconst names = [\"Version\", \"Containers\", \"Vmail\", \"Domains\", \"Domain get\", \"Mailboxes\", \"Mailboxes by domain\", \"Aliases\", \"Quarantine\", \"Queue\", \"Postfix log\", \"DKIM\", \"Mailbox missing\", \"Write must fail\"];\nreturn names.map((node) => {\n  try {\n    const items = $(node).all();\n    const first = items[0]?.json ?? {};\n    const real = items.filter((i) => Object.keys(i.json).length > 0 && !i.json.error);\n    return { json: {\n      node,\n      items: real.length,\n      error: first.error ?? null,\n      version: node === 'Version' ? first.version : undefined,\n      fields: Object.keys(first).slice(0, 10).join(', '),\n    } };\n  } catch (e) {\n    return { json: { node, notRun: e.message } };\n  }\n});"
+   },
+   "id": "sum",
+   "name": "Summary",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    3300,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "event": "newQuarantineItem"
+   },
+   "id": "trg",
+   "name": "Mailcow Trigger",
+   "type": "CUSTOM.mailcowTrigger",
+   "typeVersion": 1,
+   "position": [
+    0,
+    300
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RO_CRED_ID__",
+     "name": "Mailcow account"
+    }
+   }
+  }
+ ],
+ "connections": {
+  "Start": {
+   "main": [
+    [
+     {
+      "node": "Version",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Version": {
+   "main": [
+    [
+     {
+      "node": "Containers",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Containers": {
+   "main": [
+    [
+     {
+      "node": "Vmail",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Vmail": {
+   "main": [
+    [
+     {
+      "node": "Domains",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Domains": {
+   "main": [
+    [
+     {
+      "node": "Domain get",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Domain get": {
+   "main": [
+    [
+     {
+      "node": "Mailboxes",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Mailboxes": {
+   "main": [
+    [
+     {
+      "node": "Mailboxes by domain",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Mailboxes by domain": {
+   "main": [
+    [
+     {
+      "node": "Aliases",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Aliases": {
+   "main": [
+    [
+     {
+      "node": "Quarantine",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Quarantine": {
+   "main": [
+    [
+     {
+      "node": "Queue",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Queue": {
+   "main": [
+    [
+     {
+      "node": "Postfix log",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Postfix log": {
+   "main": [
+    [
+     {
+      "node": "DKIM",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "DKIM": {
+   "main": [
+    [
+     {
+      "node": "Mailbox missing",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Mailbox missing": {
+   "main": [
+    [
+     {
+      "node": "Write must fail",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Write must fail": {
+   "main": [
+    [
+     {
+      "node": "Summary",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  }
+ },
+ "settings": {
+  "executionOrder": "v1"
+ }
+}

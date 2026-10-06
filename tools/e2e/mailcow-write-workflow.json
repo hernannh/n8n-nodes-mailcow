@@ -33,7 +33,7 @@
    },
    "id": "n0",
    "name": "Domain create",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     220,
@@ -62,7 +62,7 @@
    },
    "id": "n1",
    "name": "Domain update",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     440,
@@ -93,7 +93,7 @@
    },
    "id": "n2",
    "name": "Mailbox create",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     660,
@@ -123,7 +123,7 @@
    },
    "id": "n3",
    "name": "Mailbox update",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     880,
@@ -147,7 +147,7 @@
    },
    "id": "n4",
    "name": "Mailbox get",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     1100,
@@ -175,7 +175,7 @@
    },
    "id": "n5",
    "name": "Alias create",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     1320,
@@ -199,7 +199,7 @@
    },
    "id": "n6",
    "name": "Aliases",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     1540,
@@ -227,7 +227,7 @@
    },
    "id": "n7",
    "name": "Alias update",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     1760,
@@ -251,7 +251,7 @@
    },
    "id": "n8",
    "name": "Alias get",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     1980,
@@ -280,7 +280,7 @@
    },
    "id": "n9",
    "name": "App password create",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     2200,
@@ -305,7 +305,7 @@
    },
    "id": "n10",
    "name": "App passwords",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     2420,
@@ -329,7 +329,7 @@
    },
    "id": "n11",
    "name": "DKIM get (auto)",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     2640,
@@ -355,7 +355,7 @@
    },
    "id": "n12",
    "name": "DKIM create must fail",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     2860,
@@ -379,7 +379,7 @@
    },
    "id": "n13",
    "name": "DKIM delete (auto)",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     3080,
@@ -405,7 +405,7 @@
    },
    "id": "n14",
    "name": "DKIM create",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     3300,
@@ -445,7 +445,7 @@
    },
    "id": "n16",
    "name": "App password delete",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     3740,
@@ -469,7 +469,7 @@
    },
    "id": "n17",
    "name": "Alias delete",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     3960,
@@ -493,7 +493,7 @@
    },
    "id": "n18",
    "name": "Mailbox delete",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     4180,
@@ -517,7 +517,7 @@
    },
    "id": "n19",
    "name": "DKIM delete",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     4400,
@@ -541,7 +541,7 @@
    },
    "id": "n20",
    "name": "Domain delete",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     4620,
@@ -565,7 +565,7 @@
    },
    "id": "n21",
    "name": "Domain gone",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     4840,

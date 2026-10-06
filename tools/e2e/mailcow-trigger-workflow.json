@@ -19,7 +19,7 @@
    },
    "id": "t0",
    "name": "New Mailbox",
-   "type": "CUSTOM.mailcowTrigger",
+   "type": "n8n-nodes-mailcow.mailcowTrigger",
    "typeVersion": 1,
    "position": [
     0,
@@ -45,7 +45,7 @@
    },
    "id": "t1",
    "name": "New Domain",
-   "type": "CUSTOM.mailcowTrigger",
+   "type": "n8n-nodes-mailcow.mailcowTrigger",
    "typeVersion": 1,
    "position": [
     0,
@@ -71,7 +71,7 @@
    },
    "id": "t2",
    "name": "New Alias",
-   "type": "CUSTOM.mailcowTrigger",
+   "type": "n8n-nodes-mailcow.mailcowTrigger",
    "typeVersion": 1,
    "position": [
     0,

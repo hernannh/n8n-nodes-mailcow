@@ -21,7 +21,7 @@
    },
    "id": "n0",
    "name": "Version",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     220,
@@ -44,7 +44,7 @@
    },
    "id": "n1",
    "name": "Containers",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     440,
@@ -67,7 +67,7 @@
    },
    "id": "n2",
    "name": "Vmail",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     660,
@@ -91,7 +91,7 @@
    },
    "id": "n3",
    "name": "Domains",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     880,
@@ -115,7 +115,7 @@
    },
    "id": "n4",
    "name": "Domain get",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     1100,
@@ -139,7 +139,7 @@
    },
    "id": "n5",
    "name": "Mailboxes",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     1320,
@@ -164,7 +164,7 @@
    },
    "id": "n6",
    "name": "Mailboxes by domain",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     1540,
@@ -188,7 +188,7 @@
    },
    "id": "n7",
    "name": "Aliases",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     1760,
@@ -212,7 +212,7 @@
    },
    "id": "n8",
    "name": "Quarantine",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     1980,
@@ -236,7 +236,7 @@
    },
    "id": "n9",
    "name": "Queue",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     2200,
@@ -261,7 +261,7 @@
    },
    "id": "n10",
    "name": "Postfix log",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     2420,
@@ -285,7 +285,7 @@
    },
    "id": "n11",
    "name": "DKIM",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     2640,
@@ -309,7 +309,7 @@
    },
    "id": "n12",
    "name": "Mailbox missing",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     2860,
@@ -336,7 +336,7 @@
    },
    "id": "n13",
    "name": "Write must fail",
-   "type": "CUSTOM.mailcow",
+   "type": "n8n-nodes-mailcow.mailcow",
    "typeVersion": 1,
    "position": [
     3080,
@@ -371,7 +371,7 @@
    },
    "id": "trg",
    "name": "Mailcow Trigger",
-   "type": "CUSTOM.mailcowTrigger",
+   "type": "n8n-nodes-mailcow.mailcowTrigger",
    "typeVersion": 1,
    "position": [
     0,

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#38BDF8" stroke-width="1" opacity="0.10"/>
+    </pattern>
+  </defs>
+
+  <rect width="1280" height="640" fill="#0B1220"/>
+  <rect width="1280" height="640" fill="url(#grid)"/>
+  <rect x="0" y="0" width="1280" height="6" fill="#1e88e5"/>
+
+  <g transform="translate(544 118) scale(3)">
+    <rect x="4" y="12" width="56" height="40" rx="6" fill="#1e88e5"/>
+    <path d="M8 18 32 36 56 18" fill="none" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M8 48 24 33M56 48 40 33" fill="none" stroke="#bbdefb" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <text x="640" y="400" text-anchor="middle" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="62" font-weight="bold" fill="#F8FAFC">n8n-nodes-mailcow</text>
+  <text x="640" y="452" text-anchor="middle" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="28" fill="#94A3B8">Manage a mailcow mail server from n8n</text>
+  <rect x="604" y="486" width="72" height="4" fill="#1e88e5"/>
+  <text x="640" y="542" text-anchor="middle" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="21" fill="#64748B">Domains / Mailboxes / Aliases / Quarantine / Polling trigger</text>
+</svg>

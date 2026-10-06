@@ -1,3 +1,5 @@
+[![n8n-nodes-mailcow](https://raw.githubusercontent.com/hernannh/n8n-nodes-mailcow/main/assets/banner.png)](https://github.com/hernannh/n8n-nodes-mailcow)
+
 # n8n-nodes-mailcow
 
 n8n community nodes for [mailcow](https://mailcow.email), the dockerized mail server suite.

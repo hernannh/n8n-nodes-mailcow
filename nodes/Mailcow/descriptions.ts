@@ -412,6 +412,14 @@ export const dkimProperties: INodeProperties[] = [
 		...show('dkim', ['create']),
 	},
 	{
+		displayName:
+			'mailcow creates a DKIM key together with every new domain. To use another selector or key size, delete that key first.',
+		name: 'dkimCreateNotice',
+		type: 'notice',
+		default: '',
+		...show('dkim', ['create']),
+	},
+	{
 		displayName: 'Key Size',
 		name: 'keySize',
 		type: 'options',

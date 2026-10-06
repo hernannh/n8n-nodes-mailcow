@@ -240,7 +240,9 @@ async function runOperation(
 			const { attr } = toAttributes(this.getNodeParameter('additionalFields', i) as IDataObject);
 			return writeResult(
 				await mailcowApiRequest.call(this, 'POST', 'add/alias', {
+					// mailcow stores a missing sogo_visible as 0, while its UI and this node default to visible.
 					active: '1',
+					sogo_visible: '1',
 					...attr,
 					address: param('address').trim(),
 					goto: splitList(param('goto')).join(','),
@@ -285,13 +287,25 @@ async function runOperation(
 		/* dkim */
 		case 'dkim:get':
 			return dkimOutput.call(this, toRecords(await mailcowApiRequest.call(this, 'GET', `get/dkim/${enc(param('domain'))}`)), i);
-		case 'dkim:create':
+		case 'dkim:create': {
+			const domain = param('domain');
+			// add/domain already generates a key, and a second add/dkim is answered with the
+			// misleading "dkim_domain_or_sel_invalid".
+			const [existing] = toRecords(await mailcowApiRequest.call(this, 'GET', `get/dkim/${enc(domain)}`));
+			if (existing?.pubkey) {
+				throw new NodeOperationError(
+					this.getNode(),
+					`${domain} already has a DKIM key (selector "${existing.dkim_selector}"). Delete it first to replace it.`,
+					{ itemIndex: i },
+				);
+			}
 			await mailcowApiRequest.call(this, 'POST', 'add/dkim', {
-				domains: param('domain'),
+				domains: domain,
 				dkim_selector: param('selector'),
 				key_size: String(this.getNodeParameter('keySize', i)),
 			});
-			return dkimOutput.call(this, toRecords(await mailcowApiRequest.call(this, 'GET', `get/dkim/${enc(param('domain'))}`)), i);
+			return dkimOutput.call(this, toRecords(await mailcowApiRequest.call(this, 'GET', `get/dkim/${enc(domain)}`)), i);
+		}
 		case 'dkim:delete':
 			return writeResult(await mailcowApiRequest.call(this, 'POST', 'delete/dkim', [param('domain')]));
 

@@ -305,6 +305,9 @@
       "description": "Direcciones, separadas por comas, que reciben lo que llega al alias",
       "placeholder": "ana@ejemplo.com.ar, juan@ejemplo.com.ar"
     },
+    "dkimCreateNotice": {
+      "displayName": "mailcow crea una clave DKIM junto con cada dominio nuevo. Para usar otro selector u otro tamaño de clave, borrá esa clave primero."
+    },
     "gotoNotice": {
       "displayName": "Cambiar los destinos también reinicia quién puede enviar como este alias: mailcow rearma esa lista y los buzones que podían enviar como el alias pierden el permiso. Revisalo después."
     },

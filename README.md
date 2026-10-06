@@ -64,10 +64,30 @@ Two behaviours of mailcow itself are shown as warnings in the node:
 
 ## Reading and sending mail
 
-This node uses the admin API, which does not touch message contents. To read or send mail from
-a mailcow mailbox use the built-in **Email Trigger (IMAP)** and **Send Email** (SMTP) nodes, or
-the community **n8n-nodes-imap** node. An app password with only the protocols the workflow
-needs is a good fit for those credentials (App Password > Create).
+This node uses the admin API, which does not touch message contents. Reading and sending go over
+IMAP and SMTP with the nodes n8n already has:
+
+| To | Use |
+|---|---|
+| Start a workflow when mail arrives | **Email Trigger (IMAP)** (built in) |
+| Send mail | **Send Email** (built in, SMTP) |
+| Move, flag, search or delete messages | **n8n-nodes-imap** (community) |
+
+What this node adds is the credential for them: an app password limited to the protocols the
+workflow needs, so the workflow never holds the user's real password and you can revoke it
+without touching the mailbox.
+
+1. **Mailcow > App Password > Create** for the mailbox, protocols **IMAP** and **SMTP**, password
+   empty. Copy `generated_password` from the output: it is returned only once.
+2. Create an **IMAP** credential (host `mail.example.com`, port `993`, SSL) and an **SMTP**
+   credential (port `465` with SSL, or `587` with STARTTLS). User: the full mailbox address.
+   Password: the app password.
+3. Use them in Email Trigger (IMAP) and Send Email.
+
+[`examples/mail-with-app-password.json`](examples/mail-with-app-password.json) is a ready-made
+workflow (Workflows > Import from File): it creates the app password and forwards every new mail
+of a support mailbox to an admin address. Send the notification outside the watched mailbox, or
+it triggers the workflow again.
 
 ## Development
 
@@ -97,7 +117,19 @@ Para la credencial, creá una API key en **Sistema > Configuración > Acceso > A
 alcanza para leer y para el trigger) y agregá la IP pública de tu n8n en "Permitir API desde".
 La URL base tiene que ser `https://`.
 
-Para leer o enviar correo usá los nodos IMAP/SMTP de n8n con una contraseña de aplicación: la API
-de administración no accede al contenido de los mensajes.
+Para leer o enviar correo usá los nodos **Email Trigger (IMAP)** y **Send Email** (SMTP) de n8n, o
+el community **n8n-nodes-imap**: la API de administración no accede al contenido de los mensajes.
+Lo que aporta este nodo es la credencial:
+
+1. **Mailcow > App Password > Create** para el buzón, protocolos **IMAP** y **SMTP**, sin password.
+   Copiá `generated_password` de la salida: aparece una sola vez.
+2. Creá una credencial **IMAP** (host `mail.tudominio`, puerto `993`, SSL) y una **SMTP** (puerto
+   `465` con SSL, o `587` con STARTTLS). Usuario: la dirección completa del buzón. Password: la
+   contraseña de aplicación.
+3. Usalas en Email Trigger (IMAP) y Send Email.
+
+El workflow de ejemplo [`examples/mail-with-app-password.json`](examples/mail-with-app-password.json)
+crea la contraseña de aplicación y reenvía cada mail nuevo de un buzón de soporte a un admin. El
+aviso tiene que ir a otra dirección, o vuelve a disparar el workflow.
 
 Proyecto independiente de la comunidad, sin relación oficial con mailcow.

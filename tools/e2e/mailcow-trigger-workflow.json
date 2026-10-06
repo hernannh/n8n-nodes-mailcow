@@ -1,0 +1,89 @@
+{
+ "id": "mailcowTrigTest01",
+ "name": "TEST mailcow trigger (activate)",
+ "active": false,
+ "settings": {
+  "executionOrder": "v1"
+ },
+ "nodes": [
+  {
+   "parameters": {
+    "pollTimes": {
+     "item": [
+      {
+       "mode": "everyMinute"
+      }
+     ]
+    },
+    "event": "newMailbox"
+   },
+   "id": "t0",
+   "name": "New Mailbox",
+   "type": "CUSTOM.mailcowTrigger",
+   "typeVersion": 1,
+   "position": [
+    0,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RO_CRED_ID__",
+     "name": "Mailcow account"
+    }
+   }
+  },
+  {
+   "parameters": {
+    "pollTimes": {
+     "item": [
+      {
+       "mode": "everyMinute"
+      }
+     ]
+    },
+    "event": "newDomain"
+   },
+   "id": "t1",
+   "name": "New Domain",
+   "type": "CUSTOM.mailcowTrigger",
+   "typeVersion": 1,
+   "position": [
+    0,
+    200
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RO_CRED_ID__",
+     "name": "Mailcow account"
+    }
+   }
+  },
+  {
+   "parameters": {
+    "pollTimes": {
+     "item": [
+      {
+       "mode": "everyMinute"
+      }
+     ]
+    },
+    "event": "newAlias"
+   },
+   "id": "t2",
+   "name": "New Alias",
+   "type": "CUSTOM.mailcowTrigger",
+   "typeVersion": 1,
+   "position": [
+    0,
+    400
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RO_CRED_ID__",
+     "name": "Mailcow account"
+    }
+   }
+  }
+ ],
+ "connections": {}
+}

@@ -1,0 +1,853 @@
+{
+ "id": "mailcowTestRw001",
+ "name": "TEST mailcow node (write, n8n-test.invalid)",
+ "active": false,
+ "settings": {
+  "executionOrder": "v1"
+ },
+ "nodes": [
+  {
+   "parameters": {},
+   "id": "start",
+   "name": "Start",
+   "type": "n8n-nodes-base.manualTrigger",
+   "typeVersion": 1,
+   "position": [
+    0,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "resource": "domain",
+    "operation": "create",
+    "domain": "n8n-test.invalid",
+    "additionalFields": {
+     "description": "n8n node E2E test, safe to delete",
+     "mailboxes": 2,
+     "aliases": 2,
+     "quota": 100,
+     "maxquota": 50,
+     "defquota": 10
+    }
+   },
+   "id": "n0",
+   "name": "Domain create",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    220,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RW_CRED_ID__",
+     "name": "Mailcow API rw"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "domain",
+    "operation": "update",
+    "domain": "n8n-test.invalid",
+    "updateFields": {
+     "description": "n8n node E2E test (edited)",
+     "rl_value": 20,
+     "rl_frame": "h"
+    }
+   },
+   "id": "n1",
+   "name": "Domain update",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    440,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RW_CRED_ID__",
+     "name": "Mailcow API rw"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "mailbox",
+    "operation": "create",
+    "email": "n8n-test-1@n8n-test.invalid",
+    "name": "n8n test",
+    "quota": 10,
+    "additionalFields": {
+     "rl_value": 5,
+     "rl_frame": "h",
+     "tags": "n8n-test"
+    }
+   },
+   "id": "n2",
+   "name": "Mailbox create",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    660,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RW_CRED_ID__",
+     "name": "Mailcow API rw"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "mailbox",
+    "operation": "update",
+    "email": "n8n-test-1@n8n-test.invalid",
+    "updateFields": {
+     "name": "n8n test edited",
+     "quota": 20,
+     "rl_value": 10,
+     "rl_frame": "d"
+    }
+   },
+   "id": "n3",
+   "name": "Mailbox update",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    880,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RW_CRED_ID__",
+     "name": "Mailcow API rw"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "mailbox",
+    "operation": "get",
+    "email": "n8n-test-1@n8n-test.invalid"
+   },
+   "id": "n4",
+   "name": "Mailbox get",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    1100,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RW_CRED_ID__",
+     "name": "Mailcow API rw"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "alias",
+    "operation": "create",
+    "address": "n8n-test-alias@n8n-test.invalid",
+    "goto": "n8n-test-1@n8n-test.invalid",
+    "additionalFields": {
+     "public_comment": "n8n test"
+    }
+   },
+   "id": "n5",
+   "name": "Alias create",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    1320,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RW_CRED_ID__",
+     "name": "Mailcow API rw"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "alias",
+    "operation": "getAll",
+    "returnAll": true
+   },
+   "id": "n6",
+   "name": "Aliases",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    1540,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RW_CRED_ID__",
+     "name": "Mailcow API rw"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "alias",
+    "operation": "update",
+    "aliasId": "={{ $('Aliases').all().find((i) => i.json.address === 'n8n-test-alias@n8n-test.invalid')?.json.id ?? '' }}",
+    "updateFields": {
+     "public_comment": "n8n test edited",
+     "sogo_visible": false
+    }
+   },
+   "id": "n7",
+   "name": "Alias update",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    1760,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RW_CRED_ID__",
+     "name": "Mailcow API rw"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "alias",
+    "operation": "get",
+    "aliasId": "={{ $('Aliases').all().find((i) => i.json.address === 'n8n-test-alias@n8n-test.invalid')?.json.id ?? '' }}"
+   },
+   "id": "n8",
+   "name": "Alias get",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    1980,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RW_CRED_ID__",
+     "name": "Mailcow API rw"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "appPassword",
+    "operation": "create",
+    "mailbox": "n8n-test-1@n8n-test.invalid",
+    "appName": "n8n-test-app",
+    "protocols": [
+     "imap_access",
+     "smtp_access"
+    ]
+   },
+   "id": "n9",
+   "name": "App password create",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    2200,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RW_CRED_ID__",
+     "name": "Mailcow API rw"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "appPassword",
+    "operation": "getAll",
+    "mailbox": "n8n-test-1@n8n-test.invalid",
+    "returnAll": true
+   },
+   "id": "n10",
+   "name": "App passwords",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    2420,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RW_CRED_ID__",
+     "name": "Mailcow API rw"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "dkim",
+    "operation": "get",
+    "domain": "n8n-test.invalid"
+   },
+   "id": "n11",
+   "name": "DKIM get (auto)",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    2640,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RW_CRED_ID__",
+     "name": "Mailcow API rw"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "dkim",
+    "operation": "create",
+    "domain": "n8n-test.invalid",
+    "selector": "n8ntest",
+    "keySize": 2048
+   },
+   "id": "n12",
+   "name": "DKIM create must fail",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    2860,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RW_CRED_ID__",
+     "name": "Mailcow API rw"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "dkim",
+    "operation": "delete",
+    "domain": "n8n-test.invalid"
+   },
+   "id": "n13",
+   "name": "DKIM delete (auto)",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    3080,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RW_CRED_ID__",
+     "name": "Mailcow API rw"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "dkim",
+    "operation": "create",
+    "domain": "n8n-test.invalid",
+    "selector": "n8ntest",
+    "keySize": 2048
+   },
+   "id": "n14",
+   "name": "DKIM create",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    3300,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RW_CRED_ID__",
+     "name": "Mailcow API rw"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resume": "timeInterval",
+    "amount": 150,
+    "unit": "seconds"
+   },
+   "id": "w15",
+   "name": "Wait for trigger",
+   "type": "n8n-nodes-base.wait",
+   "typeVersion": 1.1,
+   "position": [
+    3520,
+    0
+   ],
+   "webhookId": "5c1f0e0e-6a0b-4d8e-9a51-3f2b7c9d1e01"
+  },
+  {
+   "parameters": {
+    "resource": "appPassword",
+    "operation": "delete",
+    "appId": "={{ $('App passwords').all().find((i) => i.json.name === 'n8n-test-app')?.json.id ?? '' }}"
+   },
+   "id": "n16",
+   "name": "App password delete",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    3740,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RW_CRED_ID__",
+     "name": "Mailcow API rw"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "alias",
+    "operation": "delete",
+    "aliasId": "={{ $('Aliases').all().find((i) => i.json.address === 'n8n-test-alias@n8n-test.invalid')?.json.id ?? '' }}"
+   },
+   "id": "n17",
+   "name": "Alias delete",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    3960,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RW_CRED_ID__",
+     "name": "Mailcow API rw"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "mailbox",
+    "operation": "delete",
+    "email": "n8n-test-1@n8n-test.invalid"
+   },
+   "id": "n18",
+   "name": "Mailbox delete",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    4180,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RW_CRED_ID__",
+     "name": "Mailcow API rw"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "dkim",
+    "operation": "delete",
+    "domain": "n8n-test.invalid"
+   },
+   "id": "n19",
+   "name": "DKIM delete",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    4400,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RW_CRED_ID__",
+     "name": "Mailcow API rw"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "domain",
+    "operation": "delete",
+    "domain": "n8n-test.invalid"
+   },
+   "id": "n20",
+   "name": "Domain delete",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    4620,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RW_CRED_ID__",
+     "name": "Mailcow API rw"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "resource": "domain",
+    "operation": "get",
+    "domain": "n8n-test.invalid"
+   },
+   "id": "n21",
+   "name": "Domain gone",
+   "type": "CUSTOM.mailcow",
+   "typeVersion": 1,
+   "position": [
+    4840,
+    0
+   ],
+   "credentials": {
+    "mailcowApi": {
+     "id": "__RW_CRED_ID__",
+     "name": "Mailcow API rw"
+    }
+   },
+   "executeOnce": true,
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "jsCode": "// Summary without secrets: generated passwords and DKIM keys are never copied.\nconst names = [\"Domain create\", \"Domain update\", \"Mailbox create\", \"Mailbox update\", \"Mailbox get\", \"Alias create\", \"Aliases\", \"Alias update\", \"Alias get\", \"App password create\", \"App passwords\", \"DKIM get (auto)\", \"DKIM create must fail\", \"DKIM delete (auto)\", \"DKIM create\", \"App password delete\", \"Alias delete\", \"Mailbox delete\", \"DKIM delete\", \"Domain delete\", \"Domain gone\"];\nconst pick = (j) => ({\n  type: j.type, msg: j.msg, error: j.error,\n  name: j.name, quota: j.quota, rl: j.rl, active: j.active, tags: j.tags,\n  description: j.description, public_comment: j.public_comment, sogo_visible: j.sogo_visible,\n  app_name: j.app_name, protocols: j.protocols, dkim_selector: j.dkim_selector, length: j.length,\n  generated_password: j.generated_password ? `set (${j.generated_password.length} chars)` : undefined,\n});\nreturn names.map((node) => {\n  try {\n    const items = $(node).all().map((i) => i.json).filter((j) => Object.keys(j).length);\n    const shown = node === 'Aliases' ? items.filter((j) => String(j.address).endsWith('@n8n-test.invalid')) : items;\n    return { json: { node, items: items.length, out: JSON.stringify(shown.slice(0, 3).map(pick)) } };\n  } catch (e) {\n    return { json: { node, notRun: e.message } };\n  }\n});"
+   },
+   "id": "sum",
+   "name": "Summary",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    5060,
+    0
+   ]
+  }
+ ],
+ "connections": {
+  "Start": {
+   "main": [
+    [
+     {
+      "node": "Domain create",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Domain create": {
+   "main": [
+    [
+     {
+      "node": "Domain update",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Domain update": {
+   "main": [
+    [
+     {
+      "node": "Mailbox create",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Mailbox create": {
+   "main": [
+    [
+     {
+      "node": "Mailbox update",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Mailbox update": {
+   "main": [
+    [
+     {
+      "node": "Mailbox get",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Mailbox get": {
+   "main": [
+    [
+     {
+      "node": "Alias create",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Alias create": {
+   "main": [
+    [
+     {
+      "node": "Aliases",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Aliases": {
+   "main": [
+    [
+     {
+      "node": "Alias update",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Alias update": {
+   "main": [
+    [
+     {
+      "node": "Alias get",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Alias get": {
+   "main": [
+    [
+     {
+      "node": "App password create",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "App password create": {
+   "main": [
+    [
+     {
+      "node": "App passwords",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "App passwords": {
+   "main": [
+    [
+     {
+      "node": "DKIM get (auto)",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "DKIM get (auto)": {
+   "main": [
+    [
+     {
+      "node": "DKIM create must fail",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "DKIM create must fail": {
+   "main": [
+    [
+     {
+      "node": "DKIM delete (auto)",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "DKIM delete (auto)": {
+   "main": [
+    [
+     {
+      "node": "DKIM create",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "DKIM create": {
+   "main": [
+    [
+     {
+      "node": "Wait for trigger",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Wait for trigger": {
+   "main": [
+    [
+     {
+      "node": "App password delete",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "App password delete": {
+   "main": [
+    [
+     {
+      "node": "Alias delete",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Alias delete": {
+   "main": [
+    [
+     {
+      "node": "Mailbox delete",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Mailbox delete": {
+   "main": [
+    [
+     {
+      "node": "DKIM delete",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "DKIM delete": {
+   "main": [
+    [
+     {
+      "node": "Domain delete",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Domain delete": {
+   "main": [
+    [
+     {
+      "node": "Domain gone",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Domain gone": {
+   "main": [
+    [
+     {
+      "node": "Summary",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  }
+ }
+}
